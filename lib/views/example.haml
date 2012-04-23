@@ -1,0 +1,58 @@
+%h1== #{example["resource"]} API
+.article
+  %h2= example["description"]
+
+  - if example["explanation"]
+    %p.explanation
+      = example["explanation"]
+
+  - if example["parameters"].count > 0
+    %h3 Parameters
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Description
+      %tbody
+        - example["parameters"].each do |param|
+          %tr
+            %td
+              %span.name= param["name"]
+            %td
+              %span.description= param["description"]
+
+  - example["requests"].each do |request|
+    .request
+      %h3 Request
+
+      %h4 Headers
+      %pre.headers= request["request_headers"]
+
+      %h4 Route
+      %pre.route.highlight== #{request["request_method"]} #{request["request_path"]}
+
+      - if request["request_query_parameters"]
+        %h4 Query Parameters
+        %pre.query_parameters.highlight= request["request_query_parameters"]
+
+      - if request["request_body"]
+        %h4 Body
+        .body= request["body"]
+
+      - if request["curl"]
+        %h4 cURL
+        %pre= request["curl"]
+
+    - if request["response_status"]
+      .response
+        %h3 Response
+
+        %h4 Headers
+        %pre.headers= request["response_headers"]
+
+        %h4 Status
+        %pre.status= request["response_status"]
+
+        - if request["response_body"]
+          %h4 Body
+          .body= request["response_body"]

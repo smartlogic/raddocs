@@ -1,0 +1,8 @@
+%h1 Api Documentation
+
+- index["resources"].each do |resource|
+  %h2= resource["name"]
+  %ul.examples
+    - resource["examples"].each do |example|
+      %li.example
+        %a.name{:href => "/" + example["link"].gsub(".json", "")}= example["description"]

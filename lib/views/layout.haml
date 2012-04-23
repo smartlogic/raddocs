@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Raddocs
+    %link{:rel => "stylesheet", :href => "/bootstrap.min.css"}
+    :css
+      td.required .name:after {
+        float: right;
+        content: "required";
+        font-weight: normal;
+        color: #F08080;
+      }
+
+      p {
+        padding: 15px;
+        font-size: 130%;
+      }
+  %body
+    .container
+      = yield
