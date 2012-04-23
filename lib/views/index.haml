@@ -5,4 +5,4 @@
   %ul.examples
     - resource["examples"].each do |example|
       %li.example
-        %a.name{:href => "/" + example["link"].gsub(".json", "")}= example["description"]
+        = link_to example["description"], "/#{example["link"].gsub(".json", "")}"
