@@ -10,7 +10,10 @@ class Raddocs < Sinatra::Base
   end
 
   get "/:resource/:example" do
-    example = JSON.parse(File.read("#{docs_dir}/#{params[:resource]}/#{params[:example]}.json"))
+    file = "#{docs_dir}/#{params[:resource]}/#{params[:example]}.json"
+    file_content = File.read(file)
+
+    example = JSON.parse(file_content)
     haml :example, :locals => { :example => example }
   end
 
