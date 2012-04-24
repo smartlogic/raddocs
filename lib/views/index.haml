@@ -1,8 +1,9 @@
 %h1 Api Documentation
 
 - index["resources"].each do |resource|
-  %h2= resource["name"]
-  %ul.examples
-    - resource["examples"].each do |example|
-      %li.example
-        = link_to example["description"], "/#{example["link"].gsub(".json", "")}"
+  .resource
+    %h2= resource["name"]
+    %ul.examples
+      - resource["examples"].each do |example|
+        %li.example
+          = link_to example["description"], "/#{example["link"].gsub(".json", "")}"
