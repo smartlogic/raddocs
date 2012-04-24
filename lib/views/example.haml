@@ -41,7 +41,9 @@
       - if request["request_body"]
         %section.body
           %h4 Body
-          .body= request["request_body"]
+          .body
+            :preserve
+              #{request["request_body"]}
 
       - if request["curl"]
         %section.curl
@@ -63,4 +65,6 @@
           - if request["response_body"]
             %section.body
               %h4 Body
-              .body= request["response_body"]
+              .body
+                :preserve
+                  #{request["response_body"]}
