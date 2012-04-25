@@ -3,7 +3,7 @@
 
 # Raddocs
 
-Raddocs is a browser for JSON outputted by the `rspec_api_documentation` gem.
+Raddocs is a browser for JSON outputted by the [rspec_api_documentation](http://github.com/zipmark/rspec_api_documentation) gem.
 
 ## Install
 
