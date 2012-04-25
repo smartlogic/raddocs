@@ -9,12 +9,21 @@ class Raddocs < Sinatra::Base
     haml :index, :locals => { :index => index }
   end
 
-  get "/:resource/:example" do
-    file = "#{docs_dir}/#{params[:resource]}/#{params[:example]}.json"
+  get "/*" do
+    file = "#{docs_dir}/#{params[:splat][0]}.json"
+
+    if !File.exists?(file)
+      raise Sinatra::NotFound
+    end
+
     file_content = File.read(file)
 
     example = JSON.parse(file_content)
     haml :example, :locals => { :example => example }
+  end
+
+  not_found do
+    "Example does not exist"
   end
 
   helpers do

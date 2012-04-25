@@ -80,4 +80,10 @@ describe "Example" do
       end
     end
   end
+
+  it "should handle visiting a file that does not exist" do
+    visit "/orders/creating_an_orders"
+
+    page.should have_content("Example does not exist")
+  end
 end
