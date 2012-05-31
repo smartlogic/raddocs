@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require 'raddocs/configuration'
 
 module Raddocs
   class App < Sinatra::Base
@@ -37,16 +38,16 @@ module Raddocs
       end
     end
 
-    class << self
-      attr_accessor :docs_dir
-
-      def docs_dir
-        @docs_dir ||= "docs"
-      end
-    end
-
     def docs_dir
-      self.class.docs_dir
+      Raddocs.configuration.docs_dir
     end
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield configuration if block_given?
   end
 end

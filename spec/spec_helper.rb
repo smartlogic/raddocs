@@ -9,6 +9,9 @@ RSpec.configure do |config|
 
   config.before do
     Capybara.app = Raddocs::App
-    Raddocs::App.docs_dir = "spec/fixtures"
   end
+end
+
+Raddocs.configure do |config|
+  config.docs_dir = "spec/fixtures"
 end
