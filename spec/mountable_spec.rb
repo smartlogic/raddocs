@@ -4,7 +4,7 @@ describe "Mountable" do
   before do
     Capybara.app = Rack::Builder.new do
       map "/docs" do
-        run Raddocs
+        run Raddocs::App
       end
     end
 

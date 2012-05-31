@@ -1,50 +1,52 @@
 require 'sinatra'
 require 'json'
 
-class Raddocs < Sinatra::Base
-  set :haml, :format => :html5
+module Raddocs
+  class App < Sinatra::Base
+    set :haml, :format => :html5
 
-  get "/" do
-    index = JSON.parse(File.read("#{docs_dir}/index.json"))
-    haml :index, :locals => { :index => index }
-  end
-
-  get "/*" do
-    file = "#{docs_dir}/#{params[:splat][0]}.json"
-
-    if !File.exists?(file)
-      raise Sinatra::NotFound
+    get "/" do
+      index = JSON.parse(File.read("#{docs_dir}/index.json"))
+      haml :index, :locals => { :index => index }
     end
 
-    file_content = File.read(file)
+    get "/*" do
+      file = "#{docs_dir}/#{params[:splat][0]}.json"
 
-    example = JSON.parse(file_content)
-    haml :example, :locals => { :example => example }
-  end
+      if !File.exists?(file)
+        raise Sinatra::NotFound
+      end
 
-  not_found do
-    "Example does not exist"
-  end
+      file_content = File.read(file)
 
-  helpers do
-    def link_to(name, link)
-      %{<a href="#{request.env["SCRIPT_NAME"]}#{link}">#{name}</a>}
+      example = JSON.parse(file_content)
+      haml :example, :locals => { :example => example }
     end
 
-    def url_location
-      request.env["SCRIPT_NAME"]
+    not_found do
+      "Example does not exist"
     end
-  end
 
-  class << self
-    attr_accessor :docs_dir
+    helpers do
+      def link_to(name, link)
+        %{<a href="#{request.env["SCRIPT_NAME"]}#{link}">#{name}</a>}
+      end
+
+      def url_location
+        request.env["SCRIPT_NAME"]
+      end
+    end
+
+    class << self
+      attr_accessor :docs_dir
+
+      def docs_dir
+        @docs_dir ||= "docs"
+      end
+    end
 
     def docs_dir
-      @docs_dir ||= "docs"
+      self.class.docs_dir
     end
-  end
-
-  def docs_dir
-    self.class.docs_dir
   end
 end

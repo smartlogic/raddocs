@@ -8,7 +8,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.before do
-    Capybara.app = Raddocs
-    Raddocs.docs_dir = "spec/fixtures"
+    Capybara.app = Raddocs::App
+    Raddocs::App.docs_dir = "spec/fixtures"
   end
 end
