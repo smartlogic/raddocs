@@ -14,6 +14,7 @@ module Raddocs
     end
 
     add_setting :docs_dir, :default => "docs"
+    add_setting :docs_mime_type, :default => /text\/docs\+plain/
 
     def settings
       @settings ||= {}
