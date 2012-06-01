@@ -8,14 +8,16 @@ describe Raddocs::Configuration do
   its(:settings) { should == {} }
 
   describe ".add_setting" do
+    before do
+      Raddocs::Configuration.add_setting :new_setting, :default => "default"
+    end
+
     it 'should allow creating a new setting' do
-      Raddocs::Configuration.add_setting :new_setting
       configuration.should respond_to(:new_setting)
       configuration.should respond_to(:new_setting=)
     end
 
     it 'should allow setting a default' do
-      Raddocs::Configuration.add_setting :new_setting, :default => "default"
       configuration.new_setting.should == "default"
     end
 
