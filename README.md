@@ -14,5 +14,5 @@ Raddocs is a browser for JSON outputted by the [rspec_api_documentation](http://
 `config/routes.rb`
 
 	...
-	match "/docs" => Raddocs, :anchor => false
+	match "/docs" => Raddocs::App, :anchor => false
 	...
