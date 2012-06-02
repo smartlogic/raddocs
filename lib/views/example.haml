@@ -69,7 +69,8 @@
       - if request["request_query_parameters"]
         %section.query-parameters
           %h4 Query Parameters
-          %pre.query-parameters.highlight= request["request_query_parameters"]
+          %pre.query-parameters.highlight
+            = request["request_query_parameters"].map { |k,v| "#{k}=#{v}" }.join("\n")
 
       - if request["request_body"]
         %section.body
