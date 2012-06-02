@@ -50,13 +50,13 @@ describe "Example" do
 
     it "should have the body" do
       within("#request-0 .body") do
-        page.should have_content(%{"order": \{})
+        find("textarea").text.should =~ /"order":{/
       end
     end
 
     it "should have the curl output" do
       within("#request-0 .curl") do
-        page.should have_content("curl http://localhost:3000/orders")
+        page.should have_content("curl \"http://localhost:3000/orders\"")
       end
     end
 
@@ -75,7 +75,7 @@ describe "Example" do
 
       it "should have the body" do
         within("#request-0 .response .body") do
-          page.should have_content(%{"email": "email@example.com",})
+          find("textarea").text.should =~ /"email":"email@example\.com"/
         end
       end
     end
