@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    raddocs (0.1.0)
+    raddocs (0.1.1)
       haml
       json
       sinatra
