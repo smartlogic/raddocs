@@ -1,3 +1,3 @@
 require 'raddocs'
 
-run Raddocs
+run Raddocs::App
