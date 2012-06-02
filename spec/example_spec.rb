@@ -50,7 +50,7 @@ describe "Example" do
 
     it "should have the body" do
       within("#request-0 .body") do
-        find("textarea").text.should =~ /"order":{/
+        find("textarea").text.should =~ /"order":\{/
       end
     end
 
