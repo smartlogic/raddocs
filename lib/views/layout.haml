@@ -3,6 +3,14 @@
   %head
     %title Raddocs
     %link{:rel => "stylesheet", :href => "#{url_location}/bootstrap.min.css"}
+    %link{:rel => "stylesheet", :href => "#{url_location}/codemirror.css"}
+    %link{:rel => "stylesheet", :href => "#{url_location}/application.css"}
+    %script(src="#{url_location}/js/jquery-1-7-2.js")
+    %script(src="#{url_location}/js/codemirror.js")
+    %script(src="#{url_location}/js/mode/css/css.js")
+    %script(src="#{url_location}/js/mode/htmlmixed/htmlmixed.js")
+    %script(src="#{url_location}/js/mode/javascript/javascript.js")
+    %script(src="#{url_location}/js/mode/xml/xml.js")
     :css
       td.required .name:after {
         float: right;
