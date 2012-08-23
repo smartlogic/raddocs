@@ -5,6 +5,10 @@ describe 'Index' do
     visit "/"
   end
 
+  it "should have the api name" do
+    find("h1").should have_content("Raddocs Test")
+  end
+
   it "should have the resource title" do
     within(".resource") do
       page.should have_content("Orders")

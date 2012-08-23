@@ -12,7 +12,7 @@ describe "Mountable" do
   end
 
   it "should show the index page" do
-    page.should have_content("Api Documentation")
+    page.should have_content("Raddocs Test")
   end
 
   it "should update the links" do

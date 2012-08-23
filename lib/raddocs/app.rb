@@ -33,6 +33,10 @@ module Raddocs
       def url_location
         request.env["SCRIPT_NAME"]
       end
+
+      def api_name
+        Raddocs.configuration.api_name
+      end
     end
 
     def docs_dir

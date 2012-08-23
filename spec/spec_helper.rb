@@ -13,5 +13,6 @@ RSpec.configure do |config|
 end
 
 Raddocs.configure do |config|
+  config.api_name = "Raddocs Test"
   config.docs_dir = "spec/fixtures"
 end
