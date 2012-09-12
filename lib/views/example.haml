@@ -24,15 +24,15 @@
     });
   });
 
-%h1== #{example["resource"]} API
+%h1== #{example.resource} API
 .article
-  %h2= example["description"]
+  %h2= example.description
 
-  - if example["explanation"]
+  - if example.explanation
     %p.explanation
-      = example["explanation"]
+      = example.explanation
 
-  - if example["parameters"].count > 0
+  - if example.parameters.count > 0
     %h3 Parameters
     %table.parameters
       %thead
@@ -40,14 +40,14 @@
           %th Name
           %th Description
       %tbody
-        - example["parameters"].each do |param|
+        - example.parameters.each do |param|
           %tr.parameter
             %td
-              %span.name= param["name"]
+              %span.name= param.name
             %td
-              %span.description= param["description"]
+              %span.description= param.description
 
-  - example["requests"].each_with_index do |request, index|
+  - example.interactions.each_with_index do |interaction, index|
     .request{ :id => "request-#{index}" }
       %h3 Request
 
@@ -56,7 +56,7 @@
         %pre.headers
           :ruby
             # There are unwanted indents if this was a simple each and output in haml
-            headers = request["request_headers"].map do |header, value|
+            headers = interaction.request_headers.map do |header, value|
               "#{header}: #{value}"
             end
           :preserve
@@ -64,28 +64,28 @@
 
       %section.route
         %h4 Route
-        %pre.route.highlight== #{request["request_method"]} #{request["request_path"]}
+        %pre.route.highlight== #{interaction.request_method} #{interaction.request_path}
 
-      - if !request["request_query_parameters"].empty?
+      - if !interaction.request_query_parameters.empty?
         %section.query-parameters
           %h4 Query Parameters
           %pre.query-parameters.highlight
-            = request["request_query_parameters"].map { |k,v| "#{k}=#{v}" }.join("\n")
+            = interaction.request_query_parameters.map { |k,v| "#{k}=#{v}" }.join("\n")
 
-      - if request["request_body"]
+      - if interaction.request_body
         %section.body
           %h4 Body
-          .content{ "data-content-type" => request["request_content_type"] }
+          .content{ "data-content-type" => interaction.request_content_type }
             %textarea
               :preserve
-                #{request["request_body"]}
+                #{interaction.request_body}
 
-      - if request["curl"]
+      - if interaction.curl
         %section.curl
           %h4 cURL
-          %pre= request["curl"]
+          %pre= interaction.curl
 
-      - if request["response_status"]
+      - if interaction.response_status
         .response
           %h3 Response
 
@@ -94,7 +94,7 @@
             %pre.headers
               :ruby
                 # There are unwanted indents if this was a simple each and output in haml
-                headers = request["response_headers"].map do |header, value|
+                headers = interaction.response_headers.map do |header, value|
                   "#{header}: #{value}"
                   end
               :preserve
@@ -102,12 +102,12 @@
 
           %section.status
             %h4 Status
-            %pre.status= request["response_status"]
+            %pre.status= interaction.response_status
 
-          - if request["response_body"]
+          - if interaction.response_body
             %section.body
               %h4 Body
-              .content{ "data-content-type" => request["response_content_type"] }
+              .content{ "data-content-type" => interaction.response_content_type }
                 %textarea
                   :preserve
-                    #{request["response_body"]}
+                    #{interaction.response_body}

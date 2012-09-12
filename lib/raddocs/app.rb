@@ -17,7 +17,7 @@ module Raddocs
 
       file_content = File.read(file)
 
-      example = JSON.parse(file_content)
+      example = Example.load(file_content)
       haml :example, :locals => { :example => example }
     end
 
