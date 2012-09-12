@@ -1,7 +1,7 @@
 module Raddocs
   class Model
     def self.load(json_string)
-      content = JSON.parse(json_string)
+      content = JSON.load(json_string)
       new(content)
     end
 
