@@ -1,6 +1,6 @@
 module Raddocs
   class Example < Model
-    attr_reader :resource, :description, :explanation, :parameters, :requests
+    attr_reader :resource, :description, :explanation, :parameters, :requests, :link
 
     def parameters
       @parameters.map { |param| Parameter.new(param) }

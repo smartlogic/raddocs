@@ -4,7 +4,8 @@ module Raddocs
     set :root, File.join(File.dirname(__FILE__), "..")
 
     get "/" do
-      index = JSON.parse(File.read("#{docs_dir}/index.json"))
+      content = File.read("#{docs_dir}/index.json")
+      index = Index.load(content)
       haml :index, :locals => { :index => index }
     end
 

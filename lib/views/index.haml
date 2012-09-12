@@ -1,9 +1,9 @@
 %h1= api_name
 
-- index["resources"].each do |resource|
+- index.resources.each do |resource|
   .resource
-    %h2= resource["name"]
+    %h2= resource.name
     %ul.examples
-      - resource["examples"].each do |example|
+      - resource.examples.each do |example|
         %li.example
-          = link_to example["description"], "/#{example["link"].gsub(".json", "")}"
+          = link_to example.description, "/#{example.link.gsub(".json", "")}"
