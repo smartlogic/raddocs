@@ -1,12 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'raddocs/configuration'
-require 'raddocs/model'
-require 'raddocs/parameter'
-require 'raddocs/interaction'
-require 'raddocs/example'
-require 'raddocs/resource'
-require 'raddocs/index'
+require 'raddocs/models'
 require 'raddocs/app'
 require 'raddocs/middleware'
 

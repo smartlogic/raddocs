@@ -1,0 +1,6 @@
+require 'raddocs/model'
+require 'raddocs/parameter'
+require 'raddocs/interaction'
+require 'raddocs/example'
+require 'raddocs/resource'
+require 'raddocs/index'
