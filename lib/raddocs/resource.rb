@@ -3,7 +3,7 @@ module Raddocs
     attr_reader :name, :examples
 
     def examples
-      @examples.map { |example| Example.new(example) }
+      @examples.map { |example| IndexExample.new(example) }
     end
   end
 end
