@@ -54,6 +54,11 @@ describe "Example" do
       end
     end
 
+    it "should pass along content type information to code mirror" do
+      content = find("#request-0 .body .content")
+      content["data-content-type"].should == "application/json"
+    end
+
     it "should have the curl output" do
       within("#request-0 .curl") do
         page.should have_content("curl \"http://localhost:3000/orders\"")
@@ -77,6 +82,11 @@ describe "Example" do
         within("#request-0 .response .body") do
           find("textarea").text.should =~ /"email":"email@example\.com"/
         end
+      end
+
+      it "should pass along content type information to code mirror" do
+        content = find("#request-0 .response .body .content")
+        content["data-content-type"].should == "application/json; charset=utf-8"
       end
     end
   end
