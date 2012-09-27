@@ -54,6 +54,11 @@ describe "Example" do
       end
     end
 
+    it "should not show empty bodies" do
+      page.should have_css("#request-1")
+      page.should_not have_css("#request-1 > .body")
+    end
+
     it "should pass along content type information to code mirror" do
       content = find("#request-0 .body .content")
       content["data-content-type"].should == "application/json"
