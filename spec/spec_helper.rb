@@ -2,7 +2,11 @@ require 'raddocs'
 require 'rack/test'
 require 'capybara/rspec'
 
-set :environment, :test
+module Raddocs
+  class App
+    set :environment, :test
+  end
+end
 
 RSpec.configure do |config|
   config.include Capybara::DSL
