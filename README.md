@@ -1,4 +1,4 @@
-[![Travis status](https://secure.travis-ci.org/oestrich/raddocs.png)](https://secure.travis-ci.org/oestrich/raddocs)
+[![Travis status](https://secure.travis-ci.org/smartlogic/raddocs.png)](https://secure.travis-ci.org/oestrich/raddocs)
 
 
 # Raddocs
