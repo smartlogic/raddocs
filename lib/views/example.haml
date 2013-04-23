@@ -42,7 +42,7 @@
       %tbody
         - example["parameters"].each do |param|
           %tr.parameter
-            %td
+            %td{class: ("required" if param["required"])}
               %span.name= param["name"]
             %td
               %span.description= param["description"]
