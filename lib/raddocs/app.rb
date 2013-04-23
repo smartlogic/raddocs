@@ -18,6 +18,11 @@ module Raddocs
       file_content = File.read(file)
 
       example = JSON.parse(file_content)
+      example["requests"].each do |request|
+        request["request_content_type"] = request["request_headers"]["Content-Type"]
+        request["response_content_type"] = request["response_headers"]["Content-Type"]
+      end
+
       haml :example, :locals => { :example => example }
     end
 

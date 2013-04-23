@@ -72,7 +72,7 @@
           %pre.query-parameters.highlight
             = request["request_query_parameters"].map { |k,v| "#{k}=#{v}" }.join("\n")
 
-      - if request["request_body"]
+      - if request["request_body"] && !request["request_body"].empty?
         %section.body
           %h4 Body
           .content{ "data-content-type" => request["request_content_type"] }
