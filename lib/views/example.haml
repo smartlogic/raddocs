@@ -95,7 +95,7 @@
               :ruby
                 # There are unwanted indents if this was a simple each and output in haml
                 headers = request["response_headers"].map do |header, value|
-                  "#{header}: #{value}"
+                  "#{header}: #{html_escape(value)}"
                   end
               :preserve
                 #{headers.join("\n")}
