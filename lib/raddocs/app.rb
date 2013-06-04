@@ -18,7 +18,8 @@ module Raddocs
       file_content = File.read(file)
 
       example = JSON.parse(file_content)
-      haml :example, :locals => { :example => example }
+      params_header = example["parameters"].inject([]) { |arr, param| param.keys + arr }.uniq - ["required", "name", "description"]
+      haml :example, :locals => { :example => example, :params_header => params_header }
     end
 
     not_found do
