@@ -39,6 +39,8 @@
         %tr
           %th Name
           %th Description
+          - params_header.each do |title|
+            %th= title.capitalize
       %tbody
         - example["parameters"].each do |param|
           %tr.parameter
@@ -46,6 +48,9 @@
               %span.name= param["name"]
             %td
               %span.description= param["description"]
+            - params_header.each do |opt|
+              %td
+                %span= param[opt]
 
   - example["requests"].each_with_index do |request, index|
     .request{ :id => "request-#{index}" }
