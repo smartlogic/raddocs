@@ -40,7 +40,7 @@
           %th Name
           %th Description
           - params_header.each do |title|
-            %th= title.titleize
+            %th= title.capitalize
       %tbody
         - example["parameters"].each do |param|
           %tr.parameter
