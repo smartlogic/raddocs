@@ -1,1 +1,19 @@
-{"resources":[{"name":"Orders","examples":[{"description":"Creating an order","link":"orders/creating_an_order.json","groups":"all"},{"description":"Deleting an order","link":"orders/deleting_an_order.json","groups":"all"}]}]}
+{
+  "resources": [
+    {
+      "name": "Orders",
+      "examples": [
+        {
+          "description": "Creating an order",
+          "link": "orders/creating_an_order.json",
+          "groups": "all"
+        },
+        {
+          "description": "Deleting an order",
+          "link": "orders/deleting_an_order.json",
+          "groups": "all"
+        }
+      ]
+    }
+  ]
+}
