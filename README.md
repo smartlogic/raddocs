@@ -15,7 +15,7 @@ gem 'raddocs'
 `config/routes.rb`
 
 ```ruby
-  match "/docs" => Raddocs::App, :anchor => false
+  mount Raddocs::App => "/docs"
 ```
 
 ## Configuration
