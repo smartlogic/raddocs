@@ -24,9 +24,9 @@ describe "Example" do
       end
 
       parameters.should == [
-        ["name", "Name of order", "string"],
-        ["paid", "If the order has been paid for", "integer"],
-        ["email", "Email of user that placed the order", "string"]
+        ["order[name]", "Name of order", "string"],
+        ["order[paid]", "If the order has been paid for", "integer"],
+        ["order[email]", "Email of user that placed the order", "string"]
       ]
     end
   end
