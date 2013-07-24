@@ -5,6 +5,12 @@ describe "Example" do
     visit "/orders/creating_an_order"
   end
 
+  it "should have a link back to index" do
+    click_link "Back to Index"
+
+    current_path.should == "/"
+  end
+
   it "should have the resource title" do
     within("h1") do
       page.should have_content("Orders API")

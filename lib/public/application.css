@@ -35,3 +35,8 @@ body {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
+.nav-bar {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
