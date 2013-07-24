@@ -32,20 +32,26 @@
     %p.explanation
       = example["explanation"]
 
-  - if example["parameters"].count > 0
+  - if example["parameters"]["data"].count > 0
     %h3 Parameters
     %table.parameters
       %thead
         %tr
           %th Name
           %th Description
+          - example["parameters"]["extra_keys"].each do |key|
+            %th= key
       %tbody
-        - example["parameters"].each do |param|
+        - example["parameters"]["data"].each do |param|
           %tr.parameter
             %td{:class => ("required" if param["required"])}
               %span.name= param["name"]
             %td
               %span.description= param["description"]
+            - example["parameters"]["extra_keys"].each do |key|
+              %td
+                %span.extras= param[key]
+
 
   - example["requests"].each_with_index do |request, index|
     .request{ :id => "request-#{index}" }

@@ -5,6 +5,7 @@ require 'json'
 require 'raddocs/configuration'
 require 'raddocs/app'
 require 'raddocs/middleware'
+require 'raddocs/parameters'
 
 module Raddocs
   def self.configuration

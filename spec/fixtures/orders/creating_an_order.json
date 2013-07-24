@@ -7,18 +7,21 @@
       "name": "name",
       "description": "Name of order",
       "required": true,
-      "scope": "order"
+      "scope": "order",
+      "extra-data": "string"
     },
     {
       "name": "paid",
       "description": "If the order has been paid for",
       "required": true,
-      "scope": "order"
+      "scope": "order",
+      "extra-data": "integer"
     },
     {
       "name": "email",
       "description": "Email of user that placed the order",
-      "scope": "order"
+      "scope": "order",
+      "extra-data": "string"
     }
   ],
   "requests": [

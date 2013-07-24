@@ -20,13 +20,13 @@ describe "Example" do
   it "should have the parameters table" do
     within(".parameters") do
       parameters = all(".parameter").map do |p|
-        [p.find(".name").text, p.find(".description").text]
+        [p.find(".name").text, p.find(".description").text, p.find(".extras").text]
       end
 
       parameters.should == [
-        ["name", "Name of order"],
-        ["paid", "If the order has been paid for"],
-        ["email", "Email of user that placed the order"]
+        ["name", "Name of order", "string"],
+        ["paid", "If the order has been paid for", "integer"],
+        ["email", "Email of user that placed the order", "string"]
       ]
     end
   end
