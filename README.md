@@ -18,6 +18,17 @@ gem 'raddocs'
   mount Raddocs::App => "/docs"
 ```
 
+Make sure RspecApiDocumentation is generating JSON:
+
+`spec/spec_helper.rb`
+
+```ruby
+RspecApiDocumentation.configure do |config|
+  config.format = :json
+end
+```
+
+
 ## Configuration
 * api_name       - Name of the API on the example index page
 * docs_dir       - where the JSON output from rspec_api_documentation is located
