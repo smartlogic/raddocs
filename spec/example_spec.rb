@@ -10,7 +10,13 @@ describe "Example" do
       link[:href]
     end.sort
 
-    links.should == ["/application.css", "/codemirror.css", "http://example.com/my-external.css"]
+    links.should == [
+      "/application.css",
+      "/codemirror.css",
+      "/custom-css/extra-style.css",
+      "/custom-css/style.css",
+      "http://example.com/my-external.css"
+    ]
   end
 
   it "should have a link back to index" do

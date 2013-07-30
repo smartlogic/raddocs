@@ -8,6 +8,17 @@ module Raddocs
       haml :index, :locals => { :index => index }
     end
 
+    get "/custom-css/*" do
+      file = "#{docs_dir}/styles/#{params[:splat][0]}"
+
+      if !File.exists?(file)
+        raise Sinatra::NotFound
+      end
+
+      content_type :css
+      File.read(file)
+    end
+
     get "/*" do
       file = "#{docs_dir}/#{params[:splat][0]}.json"
 
@@ -44,6 +55,11 @@ module Raddocs
 
         if Raddocs.configuration.include_bootstrap
           files << "#{url_location}/bootstrap.min.css"
+        end
+
+        Dir.glob(File.join(docs_dir, "styles", "*.css")).each do |css_file|
+          basename = Pathname.new(css_file).basename
+          files << "#{url_location}/custom-css/#{basename}"
         end
 
         files.concat Array(Raddocs.configuration.external_css)
