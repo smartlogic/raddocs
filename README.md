@@ -30,6 +30,12 @@ end
 
 
 ## Configuration
-* api_name       - Name of the API on the example index page
-* docs_dir       - where the JSON output from rspec_api_documentation is located
-* docs_mime_type - if you use the middleware, what mime type are you serving your docs as, must be a regex. eg: `/text\/vnd.org.oestrich.raddocs\+plain/`
+* `api_name` - Name of the API on the example index page
+* `docs_dir` - where the JSON output from rspec_api_documentation is located
+* `docs_mime_type` - if you use the middleware, what mime type are you serving your docs as, must be a regex. eg: `/text\/vnd.org.oestrich.raddocs\+plain/`
+* `include_bootstrap` - Boolean to disable including bootstrap if you are using your own css
+* `external_css` - Array of css files to include, with a full URL to them
+
+### Custom CSS
+
+You can include extra css by the config option `external_css` or add a directory to the docs dir named `styles`. Every css file in the styles dir will be included as a link element on all pages.
