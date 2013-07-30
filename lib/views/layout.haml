@@ -2,9 +2,8 @@
 %html
   %head
     %title Raddocs
-    %link{:rel => "stylesheet", :href => "#{url_location}/bootstrap.min.css"}
-    %link{:rel => "stylesheet", :href => "#{url_location}/codemirror.css"}
-    %link{:rel => "stylesheet", :href => "#{url_location}/application.css"}
+    - css_files.each do |file|
+      %link{:rel => "stylesheet", :href => file}
     %script(src="#{url_location}/js/jquery-1-7-2.js")
     %script(src="#{url_location}/js/codemirror.js")
     %script(src="#{url_location}/js/mode/css/css.js")

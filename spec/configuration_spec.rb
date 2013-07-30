@@ -31,5 +31,7 @@ describe Raddocs::Configuration do
     its(:docs_dir) { should == "docs" }
     its(:docs_mime_type) { should == /text\/docs\+plain/ }
     its(:api_name) { should == "Api Documentation" }
+    its(:include_bootstrap) { should be_true }
+    its(:external_css) { should be_empty }
   end
 end

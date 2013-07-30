@@ -5,6 +5,14 @@ describe "Example" do
     visit "/orders/creating_an_order"
   end
 
+  it "should include custom css and not bootstrap" do
+    links = page.all("link").map do |link|
+      link[:href]
+    end.sort
+
+    links.should == ["/application.css", "/codemirror.css", "http://example.com/my-external.css"]
+  end
+
   it "should have a link back to index" do
     click_link "Back to Index"
 

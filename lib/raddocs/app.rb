@@ -38,6 +38,18 @@ module Raddocs
       def api_name
         Raddocs.configuration.api_name
       end
+
+      def css_files
+        files = ["#{url_location}/codemirror.css", "#{url_location}/application.css"]
+
+        if Raddocs.configuration.include_bootstrap
+          files << "#{url_location}/bootstrap.min.css"
+        end
+
+        files.concat Array(Raddocs.configuration.external_css)
+
+        files
+      end
     end
 
     def docs_dir
