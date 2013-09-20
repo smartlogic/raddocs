@@ -28,7 +28,7 @@ describe Raddocs::Configuration do
   end
 
   describe "default settings" do
-    its(:docs_dir) { should == "docs" }
+    its(:docs_dir) { should == "doc/api" }
     its(:docs_mime_type) { should == /text\/docs\+plain/ }
     its(:api_name) { should == "Api Documentation" }
     its(:include_bootstrap) { should be_true }
