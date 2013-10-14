@@ -18,6 +18,7 @@ module Raddocs
     add_setting :api_name, :default => "Api Documentation"
     add_setting :include_bootstrap, :default => true
     add_setting :external_css, :default => []
+    add_setting :url_prefix, :default => nil
 
     def settings
       @settings ||= {}

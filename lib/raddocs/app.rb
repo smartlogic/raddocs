@@ -39,11 +39,17 @@ module Raddocs
 
     helpers do
       def link_to(name, link)
-        %{<a href="#{request.env["SCRIPT_NAME"]}#{link}">#{name}</a>}
+        %{<a href="#{url_location}#{link}">#{name}</a>}
       end
 
       def url_location
-        request.env["SCRIPT_NAME"]
+        "#{url_prefix}#{request.env["SCRIPT_NAME"]}"
+      end
+
+      def url_prefix
+        url = Raddocs.configuration.url_prefix
+        return '' if url.to_s.empty?
+        url.start_with?('/') ? url : "/#{url}"
       end
 
       def api_name
