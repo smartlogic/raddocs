@@ -33,5 +33,6 @@ describe Raddocs::Configuration do
     its(:api_name) { should == "Api Documentation" }
     its(:include_bootstrap) { should be_true }
     its(:external_css) { should be_empty }
+    its(:url_prefix) { should be_nil }
   end
 end
