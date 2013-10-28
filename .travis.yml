@@ -6,6 +6,3 @@ rvm:
 branches:
   only:
     - master
-matrix:
-  allow_failures:
-    - rvm: 2.0.0
