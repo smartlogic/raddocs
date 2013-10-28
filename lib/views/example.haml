@@ -87,7 +87,7 @@
       - if request["request_body"]
         %section.body
           %h4 Body
-          .content{ "data-content-type" => request["request_content_type"] }
+          .content{ "data-content-type" => request["request_headers"]["Content-Type"] }
             %textarea
               :preserve
                 #{request["request_body"]}
@@ -119,7 +119,7 @@
           - if request["response_body"]
             %section.body
               %h4 Body
-              .content{ "data-content-type" => request["response_content_type"] }
+              .content{ "data-content-type" => request["response_headers"]["Content-Type"] }
                 %textarea
                   :preserve
                     #{request["response_body"]}
