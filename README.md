@@ -39,7 +39,7 @@ end
 
 ```ruby
 Raddocs.configure do |config|
-  config.docs_air = "doc/api"
+  config.docs_dir = "doc/api"
 end
 ```
 
