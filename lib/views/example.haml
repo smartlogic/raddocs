@@ -76,7 +76,7 @@
 
       %section.route
         %h4 Route
-        %pre.route.highlight== #{request["request_method"]} #{request["request_path"]}
+        %pre.route.highlight== #{request["request_method"]} #{example["route"]}
 
       - if !request["request_query_parameters"].empty?
         %section.query-parameters
