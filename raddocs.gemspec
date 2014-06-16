@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rspec", "~> 2.9", ">= 2.9.0"
   s.add_development_dependency "rack-test", "~> 0.6", ">= 0.6.1"
-  s.add_development_dependency "capybara", "~> 1.1", ">= 1.1.2"
+  s.add_development_dependency "capybara", "~> 2.3", ">= 2.0.0"
   s.add_development_dependency "rake", "~> 0.9", ">= 0.9.2.2"
 
   s.files        = Dir.glob("lib/**/*")
