@@ -12,13 +12,13 @@ describe "Mountable" do
   end
 
   it "should show the index page" do
-    page.should have_content("Raddocs Test")
+    expect(page).to have_content("Raddocs Test")
   end
 
   it "should update the links" do
     click_link "Creating an order"
 
-    current_path.should == "/docs/orders/creating_an_order"
-    page.should have_content("Orders API")
+    expect(current_path).to eq("/docs/orders/creating_an_order")
+    expect(page).to have_content("Orders API")
   end
 end

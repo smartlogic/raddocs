@@ -21,19 +21,19 @@ describe Raddocs::Middleware do
   it "should only respond when accept is correct" do
     get "/orders", {}, "HTTP_ACCEPT" => "application/json"
 
-    last_response.body.should == "Not intercepted"
+    expect(last_response.body).to eq("Not intercepted")
   end
 
   it "should intercept doc requests" do
     get "/orders", {}, "HTTP_ACCEPT" => "text/docs+plain"
 
-    last_response.body.should == "Creating an Order\n"
+    expect(last_response.body).to eq("Creating an Order\n")
   end
 
   it "should notify of no docs" do
     get "/accounts", {}, "HTTP_ACCEPT" => "text/docs+plain"
 
-    last_response.body.should == "Docs are not available for this resource.\n"
-    last_response.status.should == 404
+    expect(last_response.body).to eq("Docs are not available for this resource.\n")
+    expect(last_response.status).to eq(404)
   end
 end

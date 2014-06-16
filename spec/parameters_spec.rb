@@ -20,7 +20,7 @@ describe Raddocs::Parameters do
 
   it "should handle extra parameters" do
     parameters = Raddocs::Parameters.new(parameters_raw).parse
-    parameters.should == {
+    expect(parameters).to eq({
       "extra_keys" => ["Extra Data", "more-data"],
       "data" => [
         {
@@ -38,6 +38,6 @@ describe Raddocs::Parameters do
           "more-data" => "true"
         }
       ]
-    }
+    })
   end
 end

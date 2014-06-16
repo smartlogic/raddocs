@@ -15,17 +15,17 @@ describe Raddocs::Configuration do
     end
 
     it 'should allow creating a new setting' do
-      configuration.should respond_to(:new_setting)
-      configuration.should respond_to(:new_setting=)
+      expect(configuration).to respond_to(:new_setting)
+      expect(configuration).to respond_to(:new_setting=)
     end
 
     it 'should allow setting a default' do
-      configuration.new_setting.should == "default"
+      expect(configuration.new_setting).to eq("default")
     end
 
     it "should allow the default setting to be a lambda" do
       Raddocs::Configuration.add_setting :another_setting, :default => lambda { |config| config.new_setting }
-      configuration.another_setting.should == "default"
+      expect(configuration.another_setting).to eq("default")
     end
   end
 

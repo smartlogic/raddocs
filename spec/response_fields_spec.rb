@@ -18,7 +18,7 @@ describe Raddocs::ResponseFields do
 
   it "should handle extra keys" do
     parameters = Raddocs::ResponseFields.new(parameters_raw).parse
-    parameters.should == {
+    expect(parameters).to eq({
       "extra_keys" => ["Extra Data", "more-data"],
       "data" => [
         {
@@ -34,7 +34,7 @@ describe Raddocs::ResponseFields do
           "more-data" => "true"
         }
       ]
-    }
+    })
   end
 
   it "should handle no data" do
