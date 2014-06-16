@@ -51,6 +51,20 @@ describe "Example" do
     end
   end
 
+  it "should have the response fields table" do
+    within(".response-fields") do
+      response_fields = all(".response-field").map do |p|
+        [p.find(".name").text, p.find(".description").text, p.find(".extras").text]
+      end
+
+      expect(response_fields).to eq([
+        ["order[name]", "Name of order", "string"],
+        ["order[paid]", "If the order has been paid for", "integer"],
+        ["order[email]", "Email of user that placed the order", "string"]
+      ])
+    end
+  end
+
   it "should have the requests" do
     all(".request").count.should == 2
   end

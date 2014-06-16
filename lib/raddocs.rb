@@ -6,6 +6,7 @@ require 'raddocs/configuration'
 require 'raddocs/app'
 require 'raddocs/middleware'
 require 'raddocs/parameters'
+require 'raddocs/response_fields'
 
 module Raddocs
   def self.configuration

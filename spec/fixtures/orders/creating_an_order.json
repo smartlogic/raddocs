@@ -24,6 +24,26 @@
       "extra-data": "string"
     }
   ],
+  "response_fields": [
+    {
+      "name": "name",
+      "description": "Name of order",
+      "scope": "order",
+      "extra-data": "string"
+    },
+    {
+      "name": "paid",
+      "description": "If the order has been paid for",
+      "scope": "order",
+      "extra-data": "integer"
+    },
+    {
+      "name": "email",
+      "description": "Email of user that placed the order",
+      "scope": "order",
+      "extra-data": "string"
+    }
+  ],
   "requests": [
     {
       "request_method": "POST",

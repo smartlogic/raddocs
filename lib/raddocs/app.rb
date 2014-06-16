@@ -30,6 +30,7 @@ module Raddocs
 
       example = JSON.parse(file_content)
       example["parameters"] = Parameters.new(example["parameters"]).parse
+      example["response_fields"] = ResponseFields.new(example["response_fields"]).parse
       haml :example, :locals => { :example => example }
     end
 
