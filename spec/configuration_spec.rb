@@ -5,7 +5,9 @@ describe Raddocs::Configuration do
 
   subject { configuration }
 
-  its(:settings) { should == {} }
+  specify "settings are empty" do
+    expect(subject.settings).to eq({})
+  end
 
   describe ".add_setting" do
     before do
@@ -28,11 +30,23 @@ describe Raddocs::Configuration do
   end
 
   describe "default settings" do
-    its(:docs_dir) { should == "doc/api" }
-    its(:docs_mime_type) { should == /text\/docs\+plain/ }
-    its(:api_name) { should == "Api Documentation" }
-    its(:include_bootstrap) { should be_true }
-    its(:external_css) { should be_empty }
-    its(:url_prefix) { should be_nil }
+    specify "docs_dir" do
+      expect(subject.docs_dir).to eq("doc/api")
+    end
+    specify "docs_mime_type" do
+      expect(subject.docs_mime_type).to eq(/text\/docs\+plain/)
+    end
+    specify("api_name") do
+      expect(subject.api_name).to eq("Api Documentation")
+    end
+    specify("include_bootstrap") do
+      expect(subject.include_bootstrap).to be_truthy
+    end
+    specify("external_css") do
+      expect(subject.external_css).to be_empty
+    end
+    specify("url_prefix") do
+      expect(subject.url_prefix).to be_nil
+    end
   end
 end
