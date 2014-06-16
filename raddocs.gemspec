@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "haml", "~> 4.0", ">= 4.0.4"
   s.add_runtime_dependency "json", "~> 1.8", ">= 1.8.1"
 
-  s.add_development_dependency "rspec", "~> 3.0", ">= 3.0.0"
-  s.add_development_dependency "rack-test", "~> 0.6", ">= 0.6.1"
-  s.add_development_dependency "capybara", "~> 2.3", ">= 2.0.0"
-  s.add_development_dependency "rake", "~> 10.0", ">= 10.3.2"
+  s.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "rack-test", "~> 0.6"
+  s.add_development_dependency "capybara", "~> 2.3"
+  s.add_development_dependency "rake", "~> 10.0"
 
   s.files        = Dir.glob("lib/**/*")
   s.require_path = 'lib'

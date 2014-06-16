@@ -53,8 +53,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara (~> 2.3, >= 2.0.0)
-  rack-test (~> 0.6, >= 0.6.1)
+  capybara (~> 2.3)
+  rack-test (~> 0.6)
   raddocs!
-  rake (~> 10.0, >= 10.3.2)
-  rspec (~> 3.0, >= 3.0.0)
+  rake (~> 10.0)
+  rspec (~> 3.0)
