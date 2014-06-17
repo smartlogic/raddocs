@@ -1,4 +1,5 @@
 module Raddocs
+  # Index page model
   class Index
     def initialize(file)
       @attrs = JSON.parse(File.read(file))
@@ -11,6 +12,7 @@ module Raddocs
     end
   end
 
+  # Group of examples related to a specific resource, eg "Orders"
   class Resource < Struct.new(:name, :examples)
     def examples
       @examples ||= super.map do |example|
@@ -19,6 +21,9 @@ module Raddocs
     end
   end
 
+  # Example model for the index page
+  #
+  # Has an extra link attribute that is required only on this page.
   class IndexExample
     attr_reader :description, :link
 
@@ -27,11 +32,13 @@ module Raddocs
       @link = attributes.fetch("link")
     end
 
+    # Link to example page is the same name as the file minus ".json"
     def href
       link.gsub(".json", "")
     end
   end
 
+  # Example page model
   class Example
     attr_reader :resource, :description, :explanation, :parameters, :response_fields,
       :requests
@@ -56,11 +63,23 @@ module Raddocs
     end
   end
 
+  # An example's parameters, requires a class because the table can display unknown columns
   class Parameters
     attr_reader :extra_keys, :params
 
     SPECIAL_KEYS = ["name", "description", "required", "scope"]
 
+    # Collection object for parameters to pull out unknown keys so they can be
+    # displayed on the example page.
+    #
+    # @example
+    #   params = Parameters.new([
+    #     {"name" => "page", "description" => "Page number", "Type" => "Integer"}
+    #   ])
+    #   params.extra_keys == ["Type"]
+    #
+    # @param params [Array] array of {Raddocs::Parameter Parameters}
+    #
     def initialize(params)
       @params = params.map { |param| Parameter.new(param) }
       @extra_keys = params.flat_map(&:keys).uniq - SPECIAL_KEYS
@@ -71,9 +90,25 @@ module Raddocs
     end
   end
 
+  # Parameter of a request
+  #
+  # Can have an unknown columns
+  #
+  # @example
+  #   Parameter.new({
+  #     "name" => "page",
+  #     "description" => "Page number",
+  #     "Type" => "Integer"
+  #   })
+  #
   class Parameter
     attr_reader :name, :description, :required, :scope
 
+    # @param attributes [Hash]
+    # @option attributes [String] "name" Required
+    # @option attributes [String] "description" Required
+    # @option attributes [boolean] "required" defaults to false
+    # @option attributes [String] "scope" Scope of the parameter, eg 'order[]', defaults to nil
     def initialize(attributes)
       @attrs = attributes
 
@@ -91,6 +126,7 @@ module Raddocs
       !!@scope
     end
 
+    # Allows unknown keys to be accessed
     def [](key)
       @attrs[key]
     end
@@ -127,6 +163,7 @@ module Raddocs
       !!@scope
     end
 
+    # Allows unknown keys to be accessed
     def [](key)
       @attrs[key]
     end

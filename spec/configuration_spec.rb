@@ -5,10 +5,6 @@ describe Raddocs::Configuration do
 
   subject { configuration }
 
-  specify "settings are empty" do
-    expect(subject.settings).to eq({})
-  end
-
   describe ".add_setting" do
     before do
       Raddocs::Configuration.add_setting :new_setting, :default => "default"
