@@ -44,7 +44,7 @@ module Raddocs
       @explanation = @attrs.fetch("explanation", nil)
       @parameters = Parameters.new(@attrs.fetch("parameters"))
       @response_fields = ResponseFields.new(@attrs.fetch("response_fields"))
-      @requests = @attrs.fetch("requests")
+      @requests = @attrs.fetch("requests").map { |request| Request.new(request) }
     end
 
     def [](key)
@@ -129,6 +129,71 @@ module Raddocs
 
     def [](key)
       @attrs[key]
+    end
+  end
+
+  class Request
+    attr_reader :request_method, :request_path, :request_query_parameters, :request_body,
+      :curl, :response_status, :response_body
+
+    def initialize(attributes)
+      @attrs = attributes
+
+      @request_headers = attributes.fetch("request_headers")
+      @request_method = attributes.fetch("request_method")
+      @request_path = attributes.fetch("request_path")
+      @request_query_parameters = attributes.fetch("request_query_parameters", nil)
+      @request_body = attributes.fetch("request_body", nil)
+      @curl = attributes.fetch("curl", nil)
+      @response_status = attributes.fetch("response_status")
+      @response_headers = attributes.fetch("response_headers", {})
+      @response_body = attributes.fetch("response_body", nil)
+    end
+
+    # There are unwanted indents if this was a simple each and output in haml
+    def request_headers
+      @request_headers.map do |header, value|
+        "#{header}: #{value}"
+      end.join("\n")
+    end
+
+    def request_query_parameters
+      @request_query_parameters.map { |k,v| "#{k}=#{v}" }.join("\n")
+    end
+
+    def request_query_parameters?
+      !@request_query_parameters.empty?
+    end
+
+    def request_body?
+      !@request_body.nil?
+    end
+
+    def request_content_type
+      @request_headers["Content-Type"]
+    end
+
+    def curl?
+      !@curl.nil?
+    end
+
+    def response?
+      !@response_status.nil?
+    end
+
+    # There are unwanted indents if this was a simple each and output in haml
+    def response_headers
+      @response_headers.map do |header, value|
+        "#{header}: #{value}"
+      end.join("\n")
+    end
+
+    def response_body?
+      !@response_body.nil?
+    end
+
+    def response_content_type
+      @response_headers["Content-Type"]
     end
   end
 end

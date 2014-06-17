@@ -88,60 +88,50 @@
       %section.headers
         %h4 Headers
         %pre.headers
-          :ruby
-            # There are unwanted indents if this was a simple each and output in haml
-            headers = request["request_headers"].map do |header, value|
-              "#{header}: #{value}"
-            end
           :preserve
-            #{headers.join("\n")}
+            #{request.request_headers}
 
       %section.route
         %h4 Route
-        %pre.route.highlight== #{request["request_method"]} #{request["request_path"]}
+        %pre.route.highlight== #{request.request_method} #{request.request_path}
 
-      - if !request["request_query_parameters"].empty?
+      - if request.request_query_parameters?
         %section.query-parameters
           %h4 Query Parameters
           %pre.query-parameters.highlight
-            = request["request_query_parameters"].map { |k,v| "#{k}=#{v}" }.join("\n")
+            = request.request_query_parameters
 
-      - if request["request_body"]
+      - if request.request_body?
         %section.body
           %h4 Body
-          .content{ "data-content-type" => request["request_headers"]["Content-Type"] }
+          .content{ "data-content-type" => request.request_content_type }
             %textarea
               :preserve
-                #{request["request_body"]}
+                #{request.request_body}
 
-      - if request["curl"]
+      - if request.curl?
         %section.curl
           %h4 cURL
-          %pre= request["curl"]
+          %pre= request.curl
 
-      - if request["response_status"]
+      - if request.response?
         .response
           %h3 Response
 
           %section.headers
             %h4 Headers
             %pre.headers
-              :ruby
-                # There are unwanted indents if this was a simple each and output in haml
-                headers = request["response_headers"].map do |header, value|
-                  "#{header}: #{html_escape(value)}"
-                  end
               :preserve
-                #{headers.join("\n")}
+                #{request.response_headers}
 
           %section.status
             %h4 Status
-            %pre.status= request["response_status"]
+            %pre.status= request.response_status
 
-          - if request["response_body"]
+          - if request.response_body?
             %section.body
               %h4 Body
-              .content{ "data-content-type" => request["response_headers"]["Content-Type"] }
+              .content{ "data-content-type" => request.response_content_type }
                 %textarea
                   :preserve
-                    #{request["response_body"]}
+                    #{request.response_body}
