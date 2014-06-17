@@ -47,13 +47,13 @@
       %tbody
         - example.parameters.params.each do |param|
           %tr.parameter
-            %td{:class => ("required" if param["required"])}
-              - if param["scope"]
-                %span.name #{param['scope']}[#{param["name"]}]
+            %td{:class => ("required" if param.required?)}
+              - if param.scope?
+                %span.name #{param.scope}[#{param.name}]
               - else
-                %span.name= param["name"]
+                %span.name= param.name
             %td
-              %span.description= param["description"]
+              %span.description= param.description
             - example.parameters.extra_keys.each do |key|
               %td
                 %span.extras= param[key]

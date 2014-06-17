@@ -62,12 +62,37 @@ module Raddocs
     SPECIAL_KEYS = ["name", "description", "required", "scope"]
 
     def initialize(params)
-      @params = params
-      @extra_keys = @params.flat_map(&:keys).uniq - SPECIAL_KEYS
+      @params = params.map { |param| Parameter.new(param) }
+      @extra_keys = params.flat_map(&:keys).uniq - SPECIAL_KEYS
     end
 
     def present?
       @params.count > 0
+    end
+  end
+
+  class Parameter
+    attr_reader :name, :description, :required, :scope
+
+    def initialize(attributes)
+      @attrs = attributes
+
+      @name = attributes.fetch("name")
+      @description = attributes.fetch("description")
+      @required = attributes.fetch("required", false)
+      @scope = attributes.fetch("scope", nil)
+    end
+
+    def required?
+      !!@required
+    end
+
+    def scope?
+      !!@scope
+    end
+
+    def [](key)
+      @attrs[key]
     end
   end
 

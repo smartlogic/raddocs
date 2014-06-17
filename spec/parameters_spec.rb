@@ -25,6 +25,6 @@ describe Raddocs::Parameters do
 
   specify "loads params" do
     parameters = Raddocs::Parameters.new(parameters_hash)
-    expect(parameters.params).to eq(parameters_hash)
+    expect(parameters.params.count).to eq(2)
   end
 end
