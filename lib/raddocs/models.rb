@@ -102,12 +102,33 @@ module Raddocs
     SPECIAL_KEYS = ["name", "description", "scope"]
 
     def initialize(response_fields)
-      @fields = response_fields
-      @extra_keys = @fields.flat_map(&:keys).uniq - SPECIAL_KEYS if @fields
+      return unless response_fields # Might not be present
+      @fields = response_fields.map { |field| ResponseField.new(field) }
+      @extra_keys = response_fields.flat_map(&:keys).uniq - SPECIAL_KEYS
     end
 
     def present?
       @fields.count > 0
+    end
+  end
+
+  class ResponseField
+    attr_reader :name, :description, :scope
+
+    def initialize(attributes)
+      @attrs = attributes
+
+      @name = attributes.fetch("name")
+      @description = attributes.fetch("description")
+      @scope = attributes.fetch("scope", nil)
+    end
+
+    def scope?
+      !!@scope
+    end
+
+    def [](key)
+      @attrs[key]
     end
   end
 end

@@ -71,12 +71,12 @@
         - example.response_fields.fields.each do |field|
           %tr.response-field
             %td
-              - if field["scope"]
-                %span.name #{field['scope']}[#{field["name"]}]
+              - if field.scope?
+                %span.name #{field.scope}[#{field.name}]
               - else
-                %span.name= field["name"]
+                %span.name= field.name
             %td
-              %span.description= field["description"]
+              %span.description= field.description
             - example.response_fields.extra_keys.each do |key|
               %td
                 %span.extras= field[key]
