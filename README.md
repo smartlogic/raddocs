@@ -1,4 +1,5 @@
 [![Travis status](https://secure.travis-ci.org/smartlogic/raddocs.png)](https://secure.travis-ci.org/smartlogic/raddocs)
+[![Inline Docs](http://inch-ci.org/github/smartlogic/raddocs.png)](http://inch-ci.org/github/smartlogic/raddocs)
 
 
 # Raddocs
