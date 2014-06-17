@@ -4,7 +4,7 @@ module Raddocs
     set :root, File.join(File.dirname(__FILE__), "..")
 
     get "/" do
-      index = JSON.parse(File.read("#{docs_dir}/index.json"))
+      index = Index.new(File.join(docs_dir, "index.json"))
       haml :index, :locals => { :index => index }
     end
 
@@ -26,11 +26,8 @@ module Raddocs
         raise Sinatra::NotFound
       end
 
-      file_content = File.read(file)
+      example = Example.new(file)
 
-      example = JSON.parse(file_content)
-      example["parameters"] = Parameters.new(example["parameters"]).parse
-      example["response_fields"] = ResponseFields.new(example["response_fields"]).parse
       haml :example, :locals => { :example => example }
     end
 

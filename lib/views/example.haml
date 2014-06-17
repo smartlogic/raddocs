@@ -27,25 +27,25 @@
 .nav-bar
   = link_to "&laquo; Back to Index", "/"
 
-%h1== #{example["resource"]} API
+%h1== #{example.resource} API
 .article
-  %h2= example["description"]
+  %h2= example.description
 
-  - if example["explanation"]
+  - if example.explanation?
     %p.explanation
-      = example["explanation"]
+      = example.explanation
 
-  - if example["parameters"]["data"].count > 0
+  - if example.parameters.present?
     %h3 Parameters
     %table.parameters
       %thead
         %tr
           %th Name
           %th Description
-          - example["parameters"]["extra_keys"].each do |key|
+          - example.parameters.extra_keys.each do |key|
             %th= key
       %tbody
-        - example["parameters"]["data"].each do |param|
+        - example.parameters.params.each do |param|
           %tr.parameter
             %td{:class => ("required" if param["required"])}
               - if param["scope"]
@@ -54,21 +54,21 @@
                 %span.name= param["name"]
             %td
               %span.description= param["description"]
-            - example["parameters"]["extra_keys"].each do |key|
+            - example.parameters.extra_keys.each do |key|
               %td
                 %span.extras= param[key]
 
-  - if example["response_fields"] && example["response_fields"]["data"].count > 0
+  - if example.response_fields.present?
     %h3 Response Fields
     %table.response-fields
       %thead
         %tr
           %th Name
           %th Description
-          - example["response_fields"]["extra_keys"].each do |key|
+          - example.response_fields.extra_keys.each do |key|
             %th= key
       %tbody
-        - example["response_fields"]["data"].each do |field|
+        - example.response_fields.fields.each do |field|
           %tr.response-field
             %td
               - if field["scope"]
@@ -77,11 +77,11 @@
                 %span.name= field["name"]
             %td
               %span.description= field["description"]
-            - example["response_fields"]["extra_keys"].each do |key|
+            - example.response_fields.extra_keys.each do |key|
               %td
                 %span.extras= field[key]
 
-  - example["requests"].each_with_index do |request, index|
+  - example.requests.each_with_index do |request, index|
     .request{ :id => "request-#{index}" }
       %h3 Request
 

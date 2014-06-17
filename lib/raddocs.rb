@@ -2,11 +2,12 @@ Encoding.default_external = Encoding::UTF_8
 
 require 'sinatra/base'
 require 'json'
+
 require 'raddocs/configuration'
 require 'raddocs/app'
 require 'raddocs/middleware'
-require 'raddocs/parameters'
-require 'raddocs/response_fields'
+
+require 'raddocs/models'
 
 module Raddocs
   def self.configuration

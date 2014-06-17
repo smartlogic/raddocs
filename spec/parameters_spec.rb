@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Raddocs::Parameters do
-  let(:parameters_raw) { [
+  let(:parameters_hash) { [
     {
       "name" => "name",
       "description" => "Name of order",
@@ -19,25 +19,12 @@ describe Raddocs::Parameters do
   ] }
 
   it "should handle extra parameters" do
-    parameters = Raddocs::Parameters.new(parameters_raw).parse
-    expect(parameters).to eq({
-      "extra_keys" => ["Extra Data", "more-data"],
-      "data" => [
-        {
-          "name" => "name",
-          "description" => "Name of order",
-          "required" => true,
-          "scope" => "order",
-          "Extra Data" => "string"
-        },
-        {
-          "name" => "paid",
-          "description" => "If the order has been paid for",
-          "required" => true,
-          "scope" => "order",
-          "more-data" => "true"
-        }
-      ]
-    })
+    parameters = Raddocs::Parameters.new(parameters_hash)
+    expect(parameters.extra_keys).to eq(["Extra Data", "more-data"])
+  end
+
+  specify "loads params" do
+    parameters = Raddocs::Parameters.new(parameters_hash)
+    expect(parameters.params).to eq(parameters_hash)
   end
 end

@@ -17,36 +17,18 @@ describe Raddocs::ResponseFields do
   ] }
 
   it "should handle extra keys" do
-    parameters = Raddocs::ResponseFields.new(parameters_raw).parse
-    expect(parameters).to eq({
-      "extra_keys" => ["Extra Data", "more-data"],
-      "data" => [
-        {
-          "name" => "name",
-          "description" => "Name of order",
-          "scope" => "order",
-          "Extra Data" => "string"
-        },
-        {
-          "name" => "paid",
-          "description" => "If the order has been paid for",
-          "scope" => "order",
-          "more-data" => "true"
-        }
-      ]
-    })
+    response_fields = Raddocs::ResponseFields.new(parameters_raw)
+    expect(response_fields.extra_keys).to eq(["Extra Data", "more-data"])
   end
 
   it "should handle no data" do
-    parameters = Raddocs::ResponseFields.new(nil).parse
-    expect(parameters).to be_nil
+    response_fields = Raddocs::ResponseFields.new(nil)
+    expect(response_fields.extra_keys).to be_nil
+    expect(response_fields.fields).to be_nil
   end
 
   it "should handle empty array" do
-    parameters = Raddocs::ResponseFields.new([]).parse
-    expect(parameters).to eq({
-      "extra_keys" => [],
-      "data" => [],
-    })
+    response_fields = Raddocs::ResponseFields.new([])
+    expect(response_fields.extra_keys).to eq([])
   end
 end
