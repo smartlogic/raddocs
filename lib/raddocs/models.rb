@@ -132,6 +132,8 @@ module Raddocs
     end
   end
 
+  # An example's response fields, requires a class because the table can display
+  # unknown columns
   class ResponseFields
     attr_reader :extra_keys, :fields
 
@@ -148,6 +150,17 @@ module Raddocs
     end
   end
 
+  # Fields of a response
+  #
+  # Can have an unknown columns
+  #
+  # @example
+  #   Parameter.new({
+  #     "name" => "page",
+  #     "description" => "Page number",
+  #     "Type" => "Integer"
+  #   })
+  #
   class ResponseField
     attr_reader :name, :description, :scope
 
@@ -169,10 +182,27 @@ module Raddocs
     end
   end
 
+  # Documented response
+  #
+  # @param attributes [Hash]
   class Request
     attr_reader :request_method, :request_path, :request_query_parameters, :request_body,
       :curl, :response_status, :response_body
 
+    # @param attributes [Hash]
+    # @option attributes [Hash] "request_headers"
+    #   Hash of request headers, not in rack format
+    # @option attributes [String] "request_method"
+    # @option attributes [String] "request_path"
+    # @option attributes [Hash] "request_query_parameters"
+    #   Query parameters pulled from the request if a GET request
+    # @option attributes [String] "request_body"
+    # @option attributes [String] "curl" Formatted
+    #   cURL request
+    # @option attributes [String] "response_status"
+    # @option attributes [Hash] "response_headers"
+    #   Hash of response headers, not in rack format
+    # @option attributes [String] "response_body"
     def initialize(attributes)
       @attrs = attributes
 
