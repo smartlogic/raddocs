@@ -54,10 +54,6 @@ module Raddocs
       @requests = @attrs.fetch("requests").map { |request| Request.new(request) }
     end
 
-    def [](key)
-      @attrs[key]
-    end
-
     def explanation?
       !explanation.nil?
     end
