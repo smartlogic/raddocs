@@ -1,4 +1,11 @@
 module Raddocs
+  # Configure Raddocs
+  # @see Raddocs.configure Raddocs.configure
+  # @example
+  #   Raddocs.configure do |config|
+  #     # config is this class
+  #     config.api_name = "My API"
+  #   end
   class Configuration
     # Configures a new setting, creates two methods
     #

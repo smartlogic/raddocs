@@ -5,6 +5,7 @@ module Raddocs
       @attrs = JSON.parse(File.read(file))
     end
 
+    # @return [Array] array of {Raddocs::Resource Resources}
     def resources
       @attrs.fetch("resources", {}).map do |resource|
         Resource.new(resource["name"], resource["examples"])
@@ -14,6 +15,7 @@ module Raddocs
 
   # Group of examples related to a specific resource, eg "Orders"
   class Resource < Struct.new(:name, :examples)
+    # @return [Array] array of {Raddocs::IndexExample IndexExamples}
     def examples
       @examples ||= super.map do |example|
         IndexExample.new(example)
@@ -54,6 +56,7 @@ module Raddocs
       @requests = @attrs.fetch("requests").map { |request| Request.new(request) }
     end
 
+    # @return [Boolean] true if explanation is present
     def explanation?
       !explanation.nil?
     end
@@ -72,7 +75,8 @@ module Raddocs
     #   params = Parameters.new([
     #     {"name" => "page", "description" => "Page number", "Type" => "Integer"}
     #   ])
-    #   params.extra_keys == ["Type"]
+    #   params.extra_keys
+    #   # => ["Type"]
     #
     # @param params [Array] array of {Raddocs::Parameter Parameters}
     #
@@ -81,6 +85,7 @@ module Raddocs
       @extra_keys = params.flat_map(&:keys).uniq - SPECIAL_KEYS
     end
 
+    # @return [Boolean] true if params contains elements
     def present?
       @params.count > 0
     end
@@ -114,15 +119,19 @@ module Raddocs
       @scope = attributes.fetch("scope", nil)
     end
 
+    # @return [Boolean] true if required is true
     def required?
       !!@required
     end
 
+    # @return [Boolean] true if scope is present
     def scope?
       !!@scope
     end
 
     # Allows unknown keys to be accessed
+    # @param key [String]
+    # @return [Object]
     def [](key)
       @attrs[key]
     end
@@ -141,6 +150,7 @@ module Raddocs
       @extra_keys = response_fields.flat_map(&:keys).uniq - SPECIAL_KEYS
     end
 
+    # @return [Boolean] true if fields contains elements
     def present?
       @fields.count > 0
     end
@@ -168,11 +178,14 @@ module Raddocs
       @scope = attributes.fetch("scope", nil)
     end
 
+    # @return [Boolean] true if scope is present
     def scope?
       !!@scope
     end
 
     # Allows unknown keys to be accessed
+    # @param key [String]
+    # @return [Object]
     def [](key)
       @attrs[key]
     end
