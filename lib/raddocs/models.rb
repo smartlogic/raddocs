@@ -182,7 +182,7 @@ module Raddocs
   #
   # @param attributes [Hash]
   class Request
-    attr_reader :request_method, :request_path, :request_query_parameters, :request_body,
+    attr_reader :request_method, :request_path, :request_body,
       :curl, :response_status, :response_body
 
     # @param attributes [Hash]
@@ -220,26 +220,33 @@ module Raddocs
       end.join("\n")
     end
 
+    # @return [String] joined query parameters, eg: "key=value\nkey=value"
     def request_query_parameters
       @request_query_parameters.map { |k,v| "#{k}=#{v}" }.join("\n")
     end
 
+    # @return [Boolean] true if request query parameters are present
     def request_query_parameters?
       !@request_query_parameters.empty?
     end
 
+    # @return [Boolean] true if request body is present
     def request_body?
       !@request_body.nil?
     end
 
+    # Request headers must be set
+    # @return [String] Content type of the request
     def request_content_type
       @request_headers["Content-Type"]
     end
 
+    # @return [Boolean] true if cURL command is present
     def curl?
       !@curl.nil?
     end
 
+    # @return [Boolean] true if the response is present
     def response?
       !@response_status.nil?
     end
@@ -251,10 +258,13 @@ module Raddocs
       end.join("\n")
     end
 
+    # @return [Boolean] true if response body is present
     def response_body?
       !@response_body.nil?
     end
 
+    # Response headers must be set
+    # @return [String] Content type of the response
     def response_content_type
       @response_headers["Content-Type"]
     end
