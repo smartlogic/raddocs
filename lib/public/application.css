@@ -1,7 +1,9 @@
 body {
 	margin: 25px 0;
 }
-
+.container{
+  margin-top: 25px;
+}
 .response .body .content, .request .body .content {
     background-color: #f5f5f5;
     margin: 0;

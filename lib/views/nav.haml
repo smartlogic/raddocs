@@ -1,0 +1,8 @@
+
+- index.resources.each do |resource|
+  .resource
+    %b= resource.name
+    %ul.examples
+      - resource.examples.each do |example|
+        %li.example
+          = link_to example.description, "/#{example.href}"

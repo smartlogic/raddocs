@@ -34,9 +34,10 @@ module Raddocs
         raise Sinatra::NotFound
       end
 
+      index = Index.new(File.join(docs_dir, "index.json"))
       example = Example.new(file)
 
-      haml :example, :locals => { :example => example }
+      haml :example, :locals => { index: index, example: example }
     end
 
     # Page not found
