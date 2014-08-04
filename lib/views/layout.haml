@@ -24,4 +24,8 @@
       }
   %body
     .container
-      = yield
+      .row-fluid
+        .span4.sidebar
+          = haml :nav, locals: { index: index, api_name: api_name }
+        .span8.main
+          = yield
