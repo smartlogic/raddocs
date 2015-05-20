@@ -23,9 +23,18 @@
         font-size: 130%;
       }
   %body
+    - if index_view == 'tabular'
+      .navbar.navbar-inverse
+        .navbar-inner
+          .container
+            = link_to api_name, '/', {'class' => "brand"}
+    
     .container
-      .row-fluid
-        .span4.sidebar
-          = haml :nav, locals: { index: index, api_name: api_name }
-        .span8.main
-          = yield
+      - if index_view == 'tabular'
+        = yield
+      - else
+        .row-fluid
+          .span4.sidebar
+            = haml :nav, locals: { index: index, api_name: api_name }
+          .span8.main
+            = yield

@@ -46,8 +46,8 @@ module Raddocs
     end
 
     helpers do
-      def link_to(name, link)
-        %{<a href="#{url_location}#{link}">#{name}</a>}
+      def link_to(name, link, options={})
+        %{<a href="#{url_location}#{link}" class="#{options['class']}">#{name}</a>}
       end
 
       def url_location
@@ -86,6 +86,10 @@ module Raddocs
 
       def docs_dir
         Raddocs.configuration.docs_dir
+      end
+
+      def index_view
+        Raddocs.configuration.index_view
       end
     end
   end
