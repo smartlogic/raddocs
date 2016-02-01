@@ -31,6 +31,9 @@ end
 
 
 ## Configuration
+
+`config/initializers/raddocs.rb`
+
 * `api_name` - Name of the API on the example index page
 * `docs_dir` - where the JSON output from rspec_api_documentation is located
 * `docs_mime_type` - if you use the middleware, what mime type are you serving your docs as, must be a regex. eg: `/text\/vnd.org.oestrich.raddocs\+plain/`
