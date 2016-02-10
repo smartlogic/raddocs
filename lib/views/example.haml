@@ -85,11 +85,12 @@
     .request{ :id => "request-#{index}" }
       %h3 Request
 
-      %section.headers
-        %h4 Headers
-        %pre.headers
-          :preserve
-            #{request.request_headers}
+      - if request.response_headers?
+        %section.headers
+          %h4 Headers
+          %pre.headers
+            :preserve
+              #{request.request_headers}
 
       %section.route
         %h4 Route
@@ -118,11 +119,12 @@
         .response
           %h3 Response
 
-          %section.headers
-            %h4 Headers
-            %pre.headers
-              :preserve
-                #{request.response_headers}
+          - if request.response_headers?
+            %section.headers
+              %h4 Headers
+              %pre.headers
+                :preserve
+                  #{request.response_headers}
 
           %section.status
             %h4 Status

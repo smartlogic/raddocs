@@ -258,6 +258,11 @@ module Raddocs
       !@request_body.nil?
     end
 
+    # @return [Boolean] true if request headers are present
+    def request_headers?
+      request_headers.length > 0
+    end
+
     # Request headers must be set
     # @return [String] Content type of the request
     def request_content_type
@@ -284,6 +289,11 @@ module Raddocs
     # @return [Boolean] true if response body is present
     def response_body?
       !@response_body.nil?
+    end
+
+    # @return [Boolean] true if response headers are present
+    def response_headers?
+      response_headers.length > 0
     end
 
     # Response headers must be set
