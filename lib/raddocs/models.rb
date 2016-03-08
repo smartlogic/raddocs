@@ -27,11 +27,13 @@ module Raddocs
   #
   # Has an extra link attribute that is required only on this page.
   class IndexExample
-    attr_reader :description, :link
+    attr_reader :description, :link, :route_url, :http_method
 
     def initialize(attributes)
       @description = attributes.fetch("description")
       @link = attributes.fetch("link")
+      @route_url = attributes.fetch("route")
+      @http_method = attributes.fetch("method")
     end
 
     # Link to example page is the same name as the file minus ".json"

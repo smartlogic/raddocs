@@ -49,6 +49,9 @@ module Raddocs
     # @return [String] defaults to nil
     add_setting :url_prefix, :default => nil
 
+    # @!attribute index_view
+    # @regular [String] defaults to "regular"
+    add_setting :index_view, :default => 'regular'
     private
 
     def settings

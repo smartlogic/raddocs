@@ -6,7 +6,9 @@
         {
           "description": "Creating an order",
           "link": "orders/creating_an_order.json",
-          "groups": "all"
+          "groups": "all",
+          "route": "/orders",
+          "method": "post"
         },
         {
           "description": "Viewing an order",
@@ -16,7 +18,9 @@
         {
           "description": "Deleting an order",
           "link": "orders/deleting_an_order.json",
-          "groups": "all"
+          "groups": "all",
+          "route": "/orders/:id",
+          "method": "delete"
         }
       ]
     }

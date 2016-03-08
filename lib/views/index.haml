@@ -1,9 +1,24 @@
-%h1= api_name
+- unless index_view == 'tabular' 
+  %h1= api_name
 
-- index.resources.each do |resource|
-  .resource
-    %h2= resource.name
-    %ul.examples
-      - resource.examples.each do |example|
-        %li.example
-          = link_to example.description, "/#{example.href}"
+  - index.resources.each do |resource|
+    .resource
+      %h2= resource.name
+      %ul.examples
+        - resource.examples.each do |example|
+          %li.example
+            = link_to example.description, "/#{example.href}"
+
+- else 
+  - index.resources.each do |resource|
+    .resource
+      %h4= resource.name
+    %table.table.table-hover
+      %tbody
+        - resource.examples.each do |example|
+          %tr
+            %td.example_link
+              = link_to "#{example.http_method.to_s.upcase} #{example.route_url}", "/#{example.href}"
+            %td.example_description= example.description
+          
+
