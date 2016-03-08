@@ -1,139 +1,144 @@
-:javascript
-  function mirror(textarea, contentType, options) {
-    $textarea = $(textarea);
-    if ($textarea.val() != '') {
-      if(contentType.indexOf('json') >= 0) {
-        $textarea.val(JSON.stringify(JSON.parse($textarea.val()), undefined, 2));
-        options.json = true;
-        options.mode = 'javascript';
-      } else if (contentType.indexOf('javascript') >= 0) {
-        options.mode = 'javascript';
-      } else if (contentType.indexOf('xml') >= 0) {
-        options.mode = 'xml';
-      } else {
-        options.mode = 'htmlmixed';
-      }
-    }
-    return CodeMirror.fromTextArea(textarea, options);
-  };
+.row-fluid
+  .span4.sidebar
+    = haml :nav, locals: { index: index, api_name: api_name }
 
-  $(function(){
-    $(".request .body .content").each(function(i, el) {
-      el = $(el);
-      mirror(el.find("textarea")[0], el.data("content-type"), { "readOnly": true, "lineNumbers": true });
-    });
-  });
+  .span10.main
+    :javascript
+      function mirror(textarea, contentType, options) {
+        $textarea = $(textarea);
+        if ($textarea.val() != '') {
+          if(contentType.indexOf('json') >= 0) {
+            $textarea.val(JSON.stringify(JSON.parse($textarea.val()), undefined, 2));
+            options.json = true;
+            options.mode = 'javascript';
+          } else if (contentType.indexOf('javascript') >= 0) {
+            options.mode = 'javascript';
+          } else if (contentType.indexOf('xml') >= 0) {
+            options.mode = 'xml';
+          } else {
+            options.mode = 'htmlmixed';
+          }
+        }
+        return CodeMirror.fromTextArea(textarea, options);
+      };
 
-.nav-bar
-  = link_to "&laquo; Back to Index", "/"
+      $(function(){
+        $(".request .body .content").each(function(i, el) {
+          el = $(el);
+          mirror(el.find("textarea")[0], el.data("content-type"), { "readOnly": true, "lineNumbers": true });
+        });
+      });
 
-%h1== #{example.resource} API
-.article
-  %h2= example.description
+    .nav-bar
+      = link_to "&laquo; Back to Index", "/"
 
-  - if example.explanation?
-    %p.explanation
-      = example.explanation
+    %h1== #{example.resource} API
+    .article
+      %h2= example.description
 
-  - if example.parameters.present?
-    %h3 Parameters
-    %table.parameters
-      %thead
-        %tr
-          %th Name
-          %th Description
-          - example.parameters.extra_keys.each do |key|
-            %th= key
-      %tbody
-        - example.parameters.params.each do |param|
-          %tr.parameter
-            %td{:class => ("required" if param.required?)}
-              - if param.scope?
-                %span.name #{param.scope}[#{param.name}]
-              - else
-                %span.name= param.name
-            %td
-              %span.description= param.description
-            - example.parameters.extra_keys.each do |key|
-              %td
-                %span.extras= param[key]
+      - if example.explanation?
+        %p.explanation
+          = example.explanation
 
-  - if example.response_fields.present?
-    %h3 Response Fields
-    %table.response-fields
-      %thead
-        %tr
-          %th Name
-          %th Description
-          - example.response_fields.extra_keys.each do |key|
-            %th= key
-      %tbody
-        - example.response_fields.fields.each do |field|
-          %tr.response-field
-            %td
-              - if field.scope?
-                %span.name #{field.scope}[#{field.name}]
-              - else
-                %span.name= field.name
-            %td
-              %span.description= field.description
-            - example.response_fields.extra_keys.each do |key|
-              %td
-                %span.extras= field[key]
+      - if example.parameters.present?
+        %h3 Parameters
+        %table.parameters
+          %thead
+            %tr
+              %th Name
+              %th Description
+              - example.parameters.extra_keys.each do |key|
+                %th= key
+          %tbody
+            - example.parameters.params.each do |param|
+              %tr.parameter
+                %td{:class => ("required" if param.required?)}
+                  - if param.scope?
+                    %span.name #{param.scope}[#{param.name}]
+                  - else
+                    %span.name= param.name
+                %td
+                  %span.description= param.description
+                - example.parameters.extra_keys.each do |key|
+                  %td
+                    %span.extras= param[key]
 
-  - example.requests.each_with_index do |request, index|
-    .request{ :id => "request-#{index}" }
-      %h3 Request
+      - if example.response_fields.present?
+        %h3 Response Fields
+        %table.response-fields
+          %thead
+            %tr
+              %th Name
+              %th Description
+              - example.response_fields.extra_keys.each do |key|
+                %th= key
+          %tbody
+            - example.response_fields.fields.each do |field|
+              %tr.response-field
+                %td
+                  - if field.scope?
+                    %span.name #{field.scope}[#{field.name}]
+                  - else
+                    %span.name= field.name
+                %td
+                  %span.description= field.description
+                - example.response_fields.extra_keys.each do |key|
+                  %td
+                    %span.extras= field[key]
 
-      - if request.response_headers?
-        %section.headers
-          %h4 Headers
-          %pre.headers
-            :preserve
-              #{request.request_headers}
-
-      %section.route
-        %h4 Route
-        %pre.route.highlight== #{request.request_method} #{request.request_path}
-
-      - if request.request_query_parameters?
-        %section.query-parameters
-          %h4 Query Parameters
-          %pre.query-parameters.highlight
-            = request.request_query_parameters
-
-      - if request.request_body?
-        %section.body
-          %h4 Body
-          .content{ "data-content-type" => request.request_content_type }
-            %textarea
-              :preserve
-                #{request.request_body}
-
-      - if request.curl?
-        %section.curl
-          %h4 cURL
-          %pre= request.curl
-
-      - if request.response?
-        .response
-          %h3 Response
+      - example.requests.each_with_index do |request, index|
+        .request{ :id => "request-#{index}" }
+          %h3 Request
 
           - if request.response_headers?
             %section.headers
               %h4 Headers
               %pre.headers
                 :preserve
-                  #{request.response_headers}
+                  #{request.request_headers}
 
-          %section.status
-            %h4 Status
-            %pre.status= request.response_status
+          %section.route
+            %h4 Route
+            %pre.route.highlight== #{request.request_method} #{request.request_path}
 
-          - if request.response_body?
+          - if request.request_query_parameters?
+            %section.query-parameters
+              %h4 Query Parameters
+              %pre.query-parameters.highlight
+                = request.request_query_parameters
+
+          - if request.request_body?
             %section.body
               %h4 Body
-              .content{ "data-content-type" => request.response_content_type }
+              .content{ "data-content-type" => request.request_content_type }
                 %textarea
                   :preserve
-                    #{request.response_body}
+                    #{request.request_body}
+
+          - if request.curl?
+            %section.curl
+              %h4 cURL
+              %pre= request.curl
+
+          - if request.response?
+            .response
+              %h3 Response
+
+              - if request.response_headers?
+                %section.headers
+                  %h4 Headers
+                  %pre.headers
+                    :preserve
+                      #{request.response_headers}
+
+              %section.status
+                %h4 Status
+                %pre.status= request.response_status
+
+              - if request.response_body?
+                %section.body
+                  %h4 Body
+                  .content{ "data-content-type" => request.response_content_type }
+                    %textarea
+                      :preserve
+                        #{request.response_body}

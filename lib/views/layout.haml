@@ -2,14 +2,17 @@
 %html
   %head
     %title= api_name
+
     - css_files.each do |file|
       %link{:rel => "stylesheet", :href => file}
+
     %script(src="#{url_location}/js/jquery-1-7-2.js")
     %script(src="#{url_location}/js/codemirror.js")
     %script(src="#{url_location}/js/mode/css/css.js")
     %script(src="#{url_location}/js/mode/htmlmixed/htmlmixed.js")
     %script(src="#{url_location}/js/mode/javascript/javascript.js")
     %script(src="#{url_location}/js/mode/xml/xml.js")
+
     :css
       td.required .name:after {
         float: right;
@@ -22,10 +25,7 @@
         padding: 15px;
         font-size: 130%;
       }
+
   %body
     .container
-      .row-fluid
-        .span4.sidebar
-          = haml :nav, locals: { index: index, api_name: api_name }
-        .span8.main
-          = yield
+      = yield
