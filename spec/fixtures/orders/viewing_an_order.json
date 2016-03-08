@@ -1,0 +1,41 @@
+{
+  "resource": "Orders",
+  "description": "Viewing an order",
+  "explanation": "Make a request to get an order",
+  "parameters": [
+  ],
+  "response_fields": [
+    {
+      "name": "name",
+      "description": "Name of order",
+      "scope": "order",
+      "extra-data": "string"
+    },
+    {
+      "name": "paid",
+      "description": "If the order has been paid for",
+      "scope": "order",
+      "extra-data": "integer"
+    },
+    {
+      "name": "email",
+      "description": "Email of user that placed the order",
+      "scope": "order",
+      "extra-data": "string"
+    }
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/orders/9",
+      "request_body": null,
+      "request_headers": {},
+      "request_query_parameters": {},
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\"email\":\"email@example.com\",\"name\":\"Order 1\",\"paid\":true}",
+      "response_headers": {},
+      "curl": "curl \"http://localhost:3000/orders/9\" -X GET -H \"Accept: application/json\" -H \"Content-Type: application/json\" -H \"Host: example.org\" -H \"Cookie: \""
+    }
+  ]
+}

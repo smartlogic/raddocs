@@ -9,6 +9,11 @@
           "groups": "all"
         },
         {
+          "description": "Viewing an order",
+          "link": "orders/viewing_an_order.json",
+          "groups": "all"
+        },
+        {
           "description": "Deleting an order",
           "link": "orders/deleting_an_order.json",
           "groups": "all"

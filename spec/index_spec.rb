@@ -22,7 +22,7 @@ describe 'Index' do
   it "should have the examples" do
     within(".examples") do
       examples = all(".example").map { |e| e.text.strip }
-      expect(examples).to eq(["Creating an order", "Deleting an order"])
+      expect(examples).to eq(["Creating an order", "Viewing an order", "Deleting an order"])
     end
   end
 
