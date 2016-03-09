@@ -62,6 +62,21 @@ module Raddocs
     end
   end
 
+  # Guide page model
+  class Guide
+    attr_reader :title
+
+    def initialize(attributes)
+      @title = attributes.fetch("title")
+      @file = attributes.fetch("file")
+    end
+
+    def href
+      filename = @file.gsub(".md", "")
+      "guides/#{filename}"
+    end
+  end
+
   # An example's parameters, requires a class because the table can display unknown columns
   class Parameters
     attr_reader :extra_keys, :params

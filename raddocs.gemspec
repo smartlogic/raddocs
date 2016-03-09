@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rack-test", "~> 0.6"
   s.add_development_dependency "capybara", "~> 2.3"
   s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "kramdown"
 
   s.files        = Dir.glob("lib/**/*")
   s.require_path = 'lib'

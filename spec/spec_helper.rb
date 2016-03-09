@@ -24,6 +24,7 @@ end
 Raddocs.configure do |config|
   config.api_name = "Raddocs Test"
   config.docs_dir = "spec/fixtures"
+  config.guides_dir = "spec/fixtures"
   config.external_css = "http://example.com/my-external.css"
   config.include_bootstrap = false
 end

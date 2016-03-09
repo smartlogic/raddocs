@@ -29,6 +29,10 @@ module Raddocs
     # @return [String] defaults to 'doc/api'
     add_setting :docs_dir, :default => "doc/api"
 
+    # @!attribute guides_dir
+    # @return [String] defaults to 'doc/guides'
+    add_setting :guides_dir, :default => "doc/guides"
+
     # @!attribute docs_mime_type
     # @return [Regexp] defaults to Regexp.new("text/docs\+plain")
     add_setting :docs_mime_type, :default => /text\/docs\+plain/

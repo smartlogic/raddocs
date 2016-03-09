@@ -29,6 +29,9 @@ describe Raddocs::Configuration do
     specify "docs_dir" do
       expect(subject.docs_dir).to eq("doc/api")
     end
+    specify "guides_dir" do
+      expect(subject.guides_dir).to eq("doc/guides")
+    end
     specify "docs_mime_type" do
       expect(subject.docs_mime_type).to eq(/text\/docs\+plain/)
     end

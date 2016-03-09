@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= api_name %></title>
+    <% css_files.each do |file| %>
+      <link rel="stylesheet" href="<%= file %>" />
+    <% end %>
+
+    <script src="#{url_location}/js/jquery-1-7-2.js"></script>
+    <script src="#{url_location}/js/codemirror.js"></script>
+    <script src="#{url_location}/js/mode/css/css.js"></script>
+    <script src="#{url_location}/js/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="#{url_location}/js/mode/javascript/javascript.js"></script>
+    <script src="#{url_location}/js/mode/xml/xml.js"></script>
+
+    <style>
+      td.required .name:after {
+        float: right;
+        content: "required";
+        font-weight: normal;
+        color: #F08080;
+      }
+
+      p {
+        padding: 15px;
+        font-size: 130%;
+      }
+
+      nav {
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+
+  <div class="container">
+    <nav>
+      <%= link_to "&laquo; Back to Index", "/" %>
+    </nav>
+
+<%= Kramdown::Document.new(guide, input: "GFM", syntax_highlighter_opts: { line_numbers: false }).to_html %>
+  </div>
+  </body>
+</html>

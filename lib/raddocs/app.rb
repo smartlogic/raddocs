@@ -1,3 +1,20 @@
+# Load the constant
+module Raddocs
+  class App < Sinatra::Base
+    class << self
+      attr_accessor :markdown
+    end
+  end
+end
+
+begin
+  require 'kramdown'
+
+  Raddocs::App.markdown = true
+rescue LoadError
+  # do nothing, we won't load markdown files
+end
+
 module Raddocs
   # Sinatra app that serves all documentation
   class App < Sinatra::Base
@@ -20,6 +37,13 @@ module Raddocs
 
       content_type :css
       File.read(file)
+    end
+
+    if markdown
+      get "/guides/*" do
+        file = "#{guides_dir}/#{params[:splat][0]}.md"
+        erb :guide, locals: { guide: File.read(file) }, layout: false
+      end
     end
 
     # Catch all for example pages.
@@ -86,6 +110,16 @@ module Raddocs
 
       def docs_dir
         Raddocs.configuration.docs_dir
+      end
+
+      def guides
+        YAML.load(File.read(File.join(guides_dir, "guides.yml"))).map do |guide_hash|
+          Guide.new(guide_hash)
+        end
+      end
+
+      def guides_dir
+        Raddocs.configuration.guides_dir
       end
     end
   end
