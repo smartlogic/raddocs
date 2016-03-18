@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    raddocs (0.5.0)
+    raddocs (1.0.0)
       haml (~> 4.0)
       json (~> 1.8)
       sinatra (~> 1.3)
