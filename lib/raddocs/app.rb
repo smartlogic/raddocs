@@ -113,9 +113,14 @@ module Raddocs
       end
 
       def guides
-        YAML.load(File.read(File.join(guides_dir, "guides.yml"))).map do |guide_hash|
+        return [] unless File.exist?(guides_index)
+        YAML.load(File.read(guides_index)).map do |guide_hash|
           Guide.new(guide_hash)
         end
+      end
+
+      def guides_index
+        File.join guides_dir, "guides.yml"
       end
 
       def guides_dir
