@@ -52,7 +52,7 @@ module Raddocs
       @description = @attrs.fetch("description")
       @explanation = @attrs.fetch("explanation", nil)
       @parameters = Parameters.new(@attrs.fetch("parameters"))
-      @response_fields = ResponseFields.new(@attrs.fetch("response_fields"))
+      @response_fields = ResponseFields.new(@attrs.fetch("response_fields", []))
       @requests = @attrs.fetch("requests").map { |request| Request.new(request) }
     end
 
