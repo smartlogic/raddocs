@@ -33,6 +33,9 @@
       = link_to "&laquo; Back to Index", "/"
 
     %h1== #{example.resource} API
+    - if example.resource_explanation?
+      %p.explanation
+        = example.resource_explanation
     .article
       %h2= example.description
 

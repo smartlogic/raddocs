@@ -8,18 +8,22 @@ module Raddocs
     # @return [Array] array of {Raddocs::Resource Resources}
     def resources
       @attrs.fetch("resources", {}).map do |resource|
-        Resource.new(resource["name"], resource["examples"])
+        Resource.new(resource["name"], resource["explanation"], resource["examples"])
       end
     end
   end
 
   # Group of examples related to a specific resource, eg "Orders"
-  class Resource < Struct.new(:name, :examples)
+  class Resource < Struct.new(:name, :explanation, :examples)
     # @return [Array] array of {Raddocs::IndexExample IndexExamples}
     def examples
       @examples ||= super.map do |example|
         IndexExample.new(example)
       end
+    end
+
+    def explanation?
+      !explanation.nil?
     end
   end
 
@@ -42,13 +46,14 @@ module Raddocs
 
   # Example page model
   class Example
-    attr_reader :resource, :description, :explanation, :parameters, :response_fields,
+    attr_reader :resource, :resource_explanation, :description, :explanation, :parameters, :response_fields,
       :requests
 
     def initialize(file)
       @attrs = JSON.parse(File.read(file))
-
+      @resource_explanation = @attrs.fetch("resource_explanation", nil)
       @resource = @attrs.fetch("resource")
+      
       @description = @attrs.fetch("description")
       @explanation = @attrs.fetch("explanation", nil)
       @parameters = Parameters.new(@attrs.fetch("parameters"))
@@ -59,6 +64,10 @@ module Raddocs
     # @return [Boolean] true if explanation is present
     def explanation?
       !explanation.nil?
+    end
+
+    def resource_explanation?
+      !resource_explanation.nil?
     end
   end
 
