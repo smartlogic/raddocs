@@ -21,6 +21,10 @@ module Raddocs
         IndexExample.new(example)
       end
     end
+
+    def explanation?
+      !explanation.nil?
+    end
   end
 
   # Example model for the index page
@@ -42,7 +46,7 @@ module Raddocs
 
   # Example page model
   class Example
-    attr_reader :resource, :resource_explanation :description, :explanation, :parameters, :response_fields,
+    attr_reader :resource, :resource_explanation, :description, :explanation, :parameters, :response_fields,
       :requests
 
     def initialize(file)
@@ -60,6 +64,10 @@ module Raddocs
     # @return [Boolean] true if explanation is present
     def explanation?
       !explanation.nil?
+    end
+
+    def resource_explanation?
+      !resource_explanation.nil?
     end
   end
 
