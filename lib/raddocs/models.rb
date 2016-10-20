@@ -51,7 +51,7 @@ module Raddocs
 
     def initialize(file)
       @attrs = JSON.parse(File.read(file))
-      @resource_explanation = @attrs.fetch("resource_explanation")
+      @resource_explanation = @attrs.fetch("resource_explanation", nil)
       @resource = @attrs.fetch("resource")
       
       @description = @attrs.fetch("description")
