@@ -3,7 +3,7 @@ PATH
   specs:
     raddocs (2.0.0)
       haml (~> 4.0)
-      json (~> 1.8)
+      json
       sinatra (~> 2.0)
 
 GEM
@@ -26,7 +26,7 @@ GEM
       sparkr (>= 0.2.0)
       term-ansicolor
       yard (~> 0.8.7.5)
-    json (1.8.6)
+    json (2.1.0)
     kramdown (1.10.0)
     method_source (0.8.2)
     mime-types (3.0)
@@ -91,4 +91,4 @@ DEPENDENCIES
   yard-sinatra
 
 BUNDLED WITH
-   1.14.5
+   1.15.1
