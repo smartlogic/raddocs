@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
   s.add_runtime_dependency "sinatra", "~> 2.0"
-  s.add_runtime_dependency "haml", "~> 4.0"
+  s.add_runtime_dependency "haml", ">= 4.0"
   s.add_runtime_dependency "json"
 
   s.add_development_dependency "rspec", "~> 3.0"
