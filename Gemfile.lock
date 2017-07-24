@@ -72,7 +72,7 @@ GEM
     temple (0.8.0)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
-    tilt (2.0.7)
+    tilt (2.0.8)
     tins (1.15.0)
     xpath (2.1.0)
       nokogiri (~> 1.3)
