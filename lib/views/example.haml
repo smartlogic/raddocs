@@ -3,31 +3,7 @@
     = haml :nav, locals: { index: index, api_name: api_name }
 
   .span10.main
-    :javascript
-      function mirror(textarea, contentType, options) {
-        $textarea = $(textarea);
-        if ($textarea.val() != '') {
-          if(contentType.indexOf('json') >= 0) {
-            $textarea.val(JSON.stringify(JSON.parse($textarea.val()), undefined, 2));
-            options.json = true;
-            options.mode = 'javascript';
-          } else if (contentType.indexOf('javascript') >= 0) {
-            options.mode = 'javascript';
-          } else if (contentType.indexOf('xml') >= 0) {
-            options.mode = 'xml';
-          } else {
-            options.mode = 'htmlmixed';
-          }
-        }
-        return CodeMirror.fromTextArea(textarea, options);
-      };
-
-      $(function(){
-        $(".request .body .content").each(function(i, el) {
-          el = $(el);
-          mirror(el.find("textarea")[0], el.data("content-type"), { "readOnly": true, "lineNumbers": true });
-        });
-      });
+    %script(src="#{url_location}/js/example.js")
 
     .nav-bar
       = link_to "&laquo; Back to Index", "/"
