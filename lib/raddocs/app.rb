@@ -61,7 +61,7 @@ module Raddocs
       index = Index.new(File.join(docs_dir, "index.json"))
       example = Example.new(file)
 
-      haml :example, :locals => { index: index, example: example }
+      (haml :example, :locals => { index: index, example: example }).html_safe
     end
 
     # Page not found
