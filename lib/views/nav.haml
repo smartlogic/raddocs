@@ -5,4 +5,4 @@
     %ul.examples
       - resource.examples.each do |example|
         %li.example
-          = link_to example.description, "/#{example.href}"
+          = (link_to example.description, "/#{example.href}").html_safe
