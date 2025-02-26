@@ -31,7 +31,7 @@ module Raddocs
     get "/custom-css/*" do
       file = "#{docs_dir}/styles/#{params[:splat][0]}"
 
-      if !File.exists?(file)
+      if !File.exist?(file)
         raise Sinatra::NotFound
       end
 
@@ -54,7 +54,7 @@ module Raddocs
     get "/*" do
       file = "#{docs_dir}/#{params[:splat][0]}.json"
 
-      if !File.exists?(file)
+      if !File.exist?(file)
         raise Sinatra::NotFound
       end
 
