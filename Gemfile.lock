@@ -4,7 +4,7 @@ PATH
     raddocs (2.3.0)
       haml (>= 4.0)
       json
-      sinatra
+      sinatra (~> 3.0)
 
 GEM
   remote: https://rubygems.org/
