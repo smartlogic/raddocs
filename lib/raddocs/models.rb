@@ -53,7 +53,7 @@ module Raddocs
       @attrs = JSON.parse(File.read(file))
       @resource_explanation = @attrs.fetch("resource_explanation", nil)
       @resource = @attrs.fetch("resource")
-      
+
       @description = @attrs.fetch("description")
       @explanation = @attrs.fetch("explanation", nil)
       @parameters = Parameters.new(@attrs.fetch("parameters"))
@@ -282,6 +282,12 @@ module Raddocs
       !@request_body.nil?
     end
 
+    def request_body
+      return "" if @request_body.blank?
+      return @request_body if @request_body.is_a?(String)
+      @request_body.to_json
+    end
+
     # @return [Boolean] true if request headers are present
     def request_headers?
       request_headers.length > 0
@@ -313,6 +319,12 @@ module Raddocs
     # @return [Boolean] true if response body is present
     def response_body?
       !@response_body.nil?
+    end
+
+    def response_body
+      return "" if @response_body.blank?
+      return @response_body if @response_body.is_a?(String)
+      @response_body.to_json
     end
 
     # @return [Boolean] true if response headers are present
