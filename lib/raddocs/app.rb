@@ -8,7 +8,7 @@ module Raddocs
 end
 
 begin
-  require 'kramdown'
+  require "kramdown"
 
   Raddocs::App.markdown = true
 rescue LoadError
@@ -18,13 +18,13 @@ end
 module Raddocs
   # Sinatra app that serves all documentation
   class App < Sinatra::Base
-    set :haml, :format => :html5
+    set :haml, format: :html5, escape_html: false
     set :root, File.join(File.dirname(__FILE__), "..")
 
     # Main index, displays all examples grouped by resource
     get "/" do
       index = Index.new(File.join(docs_dir, "index.json"))
-      haml :index, :locals => { :index => index }
+      haml :index, locals: { index: index }
     end
 
     # Allows for overriding styles
@@ -47,7 +47,7 @@ module Raddocs
     end
 
     # Catch all for example pages.
-    # Loads files from the docs dir and appends '.json'.
+    # Loads files from the docs dir and appends ".json".
     #
     # @example
     #   "/orders/create_an_order" => "docs/api/orders/create_an_order.json"
@@ -80,8 +80,8 @@ module Raddocs
 
       def url_prefix
         url = Raddocs.configuration.url_prefix
-        return '' if url.to_s.empty?
-        url.start_with?('/') ? url : "/#{url}"
+        return "" if url.to_s.empty?
+        url.start_with?("/") ? url : "/#{url}"
       end
 
       def api_name
