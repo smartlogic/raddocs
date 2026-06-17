@@ -5,7 +5,7 @@
   %ul.guides
     - guides.each do |guide|
       %li.guide
-        = link_to guide.title, "/#{guide.href}"
+        = (link_to guide.title, "/#{guide.href}").html_safe
 
 - index.resources.each do |resource|
   .resource
@@ -15,5 +15,5 @@
         = resource.explanation
     %ul.examples
       - resource.examples.each do |example|
-        %li.example
-          = link_to example.description, "/#{example.href}"
+        %li.example          
+          = (link_to example.description, "/#{example.href}").html_safe

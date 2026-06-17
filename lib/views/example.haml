@@ -1,12 +1,12 @@
 .row-fluid
   .span4.sidebar
-    = haml :nav, locals: { index: index, api_name: api_name }
+    = (haml :nav, locals: { index: index, api_name: api_name }).html_safe
 
   .span10.main
     %script(src="#{url_location}/js/example.js")
 
     .nav-bar
-      = link_to "&laquo; Back to Index", "/"
+      = (link_to "&laquo; Back to Index", "/").html_safe
 
     %h1== #{example.resource} API
     - if example.resource_explanation?
